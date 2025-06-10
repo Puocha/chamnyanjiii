@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHINCHILLA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="account-controls">
+            <div class="account-toggle">
+                <button id="account-toggle-button" class="btn btn-secondary" aria-label="Toggle account type">Demo Account</button>
+                <span id="account-balance">Balance: N/A</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card" id="trading-details-card">
+            <div class="trading-details-top">
+                <h2>Trading Details</h2>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="stake-amount">Stake Amount ($):</label>
+                        <input type="number" id="stake-amount" value="1" min="0.01" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label for="max-loss">Max Loss ($):</label>
+                        <input type="number" id="max-loss" value="100" min="0.01" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label for="martingale-level">Martingale Level:</label>
+                        <input type="number" id="martingale-level" value="3" min="1">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="martingale-multiplier">Martingale Multiplier:</label>
+                        <input type="number" id="martingale-multiplier" value="2" min="1" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="target-profit">Target Profit ($):</label>
+                        <input type="number" id="target-profit" value="100" min="0.01" step="0.01">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="trading-details-bottom">
+                <h2>Consecutive Tick Counts</h2>
+                <div class="tick-counts-grid">
+                    <div class="tick-label">Over 3</div><input type="number" id="tick-over3" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Over 4</div><input type="number" id="tick-over4" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Over 5</div><input type="number" id="tick-over5" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Over 6</div><input type="number" id="tick-over6" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Under 4</div><input type="number" id="tick-under4" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Under 5</div><input type="number" id="tick-under5" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Under 6</div><input type="number" id="tick-under6" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Under 7</div><input type="number" id="tick-under7" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Even</div><input type="number" id="tick-even" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Odd</div><input type="number" id="tick-odd" class="tick-input" min="1" value="3">
+                    <div class="tick-label">Rise</div><input type="number" id="tick-rise" class="tick-input" min="1" value="6">
+                    <div class="tick-label">Fall</div><input type="number" id="tick-fall" class="tick-input" min="1" value="6">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="trade-history-card">
+            <h2>Trade History</h2>
+            <button id="clear-history" class="btn btn-danger" aria-label="Clear trade history">Clear</button>
+            <div class="table-wrapper">
+                <table id="trade-history-table">
+                    <thead>
+                        <tr>
+                            <th>Trade Type</th>
+                            <th>Market</th>
+                            <th>Entry Spot</th>
+                            <th>Exit Spot</th>
+                            <th>Profit/Loss ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="5">No trades yet</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card" id="log-window-card">
+            <h2>Logs</h2>
+            <div id="log"></div>
+        </div>
+
+        <div class="card" id="strategies-card">
+            <h2>Strategies</h2>
+            <div class="strategy-buttons">
+                <button class="strategy-button btn btn-primary over3-special" data-strategy="over3" aria-label="Start or stop Over 3 strategy">Over 3</button>
+                <button class="strategy-button btn btn-primary" data-strategy="even" aria-label="Start or stop Even strategy">Even</button>
+                <button class="strategy-button btn btn-primary" data-strategy="odd" aria-label="Start or stop Odd strategy">Odd</button>
+                <button class="strategy-button btn btn-primary" data-strategy="over4" aria-label="Start or stop Over 4 strategy">Over 4</button>
+                <button class="strategy-button btn btn-primary" data-strategy="over5" aria-label="Start or stop Over 5 strategy">Over 5</button>
+                <button class="strategy-button btn btn-primary" data-strategy="over6" aria-label="Start or stop Over 6 strategy">Over 6</button>
+                <button class="strategy-button btn btn-primary" data-strategy="over7" aria-label="Start or stop Over 7 strategy">Over 7</button>
+                <button class="strategy-button btn btn-primary" data-strategy="over8" aria-label="Start or stop Over 8 strategy">Over 8</button>
+                <button class="strategy-button btn btn-primary" data-strategy="under2" aria-label="Start or stop Under 2 strategy">Under 2</button>
+                <button class="strategy-button btn btn-primary" data-strategy="under3" aria-label="Start or stop Under 3 strategy">Under 3</button>
+                <button class="strategy-button btn btn-primary" data-strategy="under4" aria-label="Start or stop Under 4 strategy">Under 4</button>
+                <button class="strategy-button btn btn-primary" data-strategy="under5" aria-label="Start or stop Under 5 strategy">Under 5</button>
+                <button class="strategy-button btn btn-primary" data-strategy="under6" aria-label="Start or stop Under 6 strategy">Under 6</button>
+                <button class="strategy-button btn btn-primary" data-strategy="under7" aria-label="Start or stop Under 7 strategy">Under 7</button>
+                <button class="strategy-button btn btn-primary" data-strategy="rise" aria-label="Start or stop Rise strategy">Rise</button>
+                <button class="strategy-button btn btn-primary" data-strategy="fall" aria-label="Start or stop Fall strategy">Fall</button>
+                <button id="stop-button" class="btn btn-danger" aria-label="Stop all strategies">Stop</button>
+            </div>
+        </div>
+
+        <div class="card" id="market-data-card">
+            <h2 style="display: flex; align-items: center; gap: 10px;">
+                Market Data Table
+                <select id="market-data-mode" style="margin-left: 10px;">
+                    <option value="market-data">Market Data</option>
+                    <option value="even">Even/Odd</option>
+                    <option value="overunder4">Over/Under 4</option>
+                    <option value="overunder5">Over/Under 5</option>
+                    <option value="overunder6">Over/Under 6</option>
+                    <option value="overunder7">Over/Under 7</option>
+                    <option value="overunder8">Over/Under 8</option>
+                    <option value="overunder3">Over/Under 3</option>
+                    <option value="over2">Over/Under 2</option>
+                </select>
+            </h2>
+            <div class="table-wrapper">
+                <table id="market-data-table">
+                    <thead>
+                        <tr>
+                            <th>Markets</th>
+                            <th>Price</th>
+                            <th>Last Digit</th>
+                            <th>0%</th>
+                            <th>1%</th>
+                            <th>2%</th>
+                            <th>3%</th>
+                            <th>4%</th>
+                            <th>5%</th>
+                            <th>6%</th>
+                            <th>7%</th>
+                            <th>8%</th>
+                            <th>9%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Market data rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js" type="module"></script>
+    <script src="websocket.js" type="module"></script>
+    <script src="marketAnalysis.js" type="module"></script>
+    <script src="trading.js" type="module"></script>
+    <script src="strategies.js" type="module"></script>
+    <script src="ui.js" type="module"></script>
+</body>
+</html> 

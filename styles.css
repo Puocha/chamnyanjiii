@@ -1,0 +1,382 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #94DEA5; /* Mint green background */
+    color: #023D54; /* Dark blue for text */
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #023D54; /* Dark blue for headers */
+    padding: 0 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.account-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.account-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#account-balance {
+    font-weight: bold;
+    color: #023D54;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #fff; /* White for card backgrounds */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(2, 61, 84, 0.08);
+    flex: 1; /* Allow cards to grow within rows */
+    /* Adjust flex-basis to control initial size and wrapping */
+    flex-basis: calc(50% - 10px); /* Approximately half the container width minus gap */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    border: 1.5px solid #023D54;
+    min-width: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+/* Specific styles for cards to control wrapping */
+#trading-details-card,
+#trade-history-card,
+#log-window-card,
+#strategies-card {
+    flex-basis: calc(50% - 10px);
+}
+
+#strategies-card .strategy-button {
+    /* Ensure standard size and prevent stretching */
+    height: 30px; /* Example fixed height, adjust as needed */
+    /* You might also consider setting a width or flex-basis here if needed */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+    text-align: center; /* Center align button text */
+    line-height: 10px; /* Vertically center text */
+}
+
+#strategies-card .strategy-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Add consistent spacing between buttons */
+    /* Optional: add some top margin to separate from the title */
+    margin-top: 10px;
+}
+
+#strategies-card .strategy-button.over3-special {
+    background: linear-gradient(90deg, #ff9800 0%, #ff5e62 100%);
+    color: #fff700;
+    border: 2px solid #ff9800;
+    box-shadow: 0 0 8px 2px #ff980044;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #00000033;
+}
+#strategies-card .strategy-button.over3-special:focus, #strategies-card .strategy-button.over3-special.active {
+    background: linear-gradient(90deg, #ff5e62 0%, #ff9800 100%);
+    color: #fff700;
+    border-color: #ff5e62;
+}
+#strategies-card .strategy-button.over3-special:hover {
+    background: linear-gradient(90deg, #ff9800 0%, #ff5e62 100%);
+    color: #fff700;
+    border-color: #ff9800;
+}
+
+#strategies-card .strategy-button[data-strategy="over7"],
+#strategies-card .strategy-button[data-strategy="over8"],
+#strategies-card .strategy-button[data-strategy="under2"] {
+    background-color: #80802f;
+    color: #ffff66;
+    border: 2px solid #80802f;
+}
+#strategies-card .strategy-button[data-strategy="over7"]:hover,
+#strategies-card .strategy-button[data-strategy="over8"]:hover,
+#strategies-card .strategy-button[data-strategy="under2"]:hover {
+    background-color: #a0a04f;
+    color: #ffff66;
+    border-color: #a0a04f;
+}
+#strategies-card .strategy-button[data-strategy="over7"].active,
+#strategies-card .strategy-button[data-strategy="over8"].active,
+#strategies-card .strategy-button[data-strategy="under2"].active {
+    background-color: #a0a04f;
+    color: #ffff66;
+    border-color: #a0a04f;
+}
+
+#strategies-card .strategy-button[data-strategy="under7"] {
+    background: linear-gradient(90deg, #ff9800 0%, #ff5e62 100%);
+    color: #fff700;
+    border: 2px solid #ff9800;
+    box-shadow: 0 0 8px 2px #ff980044;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #00000033;
+}
+#strategies-card .strategy-button[data-strategy="under7"]:focus,
+#strategies-card .strategy-button[data-strategy="under7"].active {
+    background: linear-gradient(90deg, #ff5e62 0%, #ff9800 100%);
+    color: #fff700;
+    border-color: #ff5e62;
+}
+#strategies-card .strategy-button[data-strategy="under7"]:hover {
+    background: linear-gradient(90deg, #ff9800 0%, #ff5e62 100%);
+    color: #fff700;
+    border-color: #ff9800;
+}
+
+#market-data-card {
+    flex-basis: 100%; /* Make market data table span the full width */
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #023D54;
+    text-align: center; /* Center align card titles */
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #9A6735; /* Brown for labels */
+}
+
+.input-group input[type="number"],
+.input-group input[type="text"],
+.input-group select {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    border: 1.5px solid #9A6735;
+    border-radius: 4px;
+    background-color: #ffff66;
+    color: #023D54;
+}
+
+/* --- Button Standardization --- */
+.btn {
+    background-color: #023D54;
+    color: #ffff66;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, box-shadow 0.2s;
+    outline: none;
+    margin: 0 2px;
+    min-width: 100px;
+    min-height: 36px;
+    display: inline-block;
+    font-weight: 600;
+}
+.btn:focus, .btn.active {
+    box-shadow: 0 0 0 2px #9A6735;
+    background-color: #9A6735;
+    color: #ffff66;
+}
+.btn:hover {
+    background-color: #9A6735;
+    color: #ffff66;
+}
+.btn-primary {
+    background-color: #023D54;
+    color: #ffff66;
+}
+.btn-secondary {
+    background-color: #94DEA5;
+    color: #023D54;
+    border: 1.5px solid #023D54;
+}
+.btn-danger {
+    background-color: #9A6735;
+    color: #ffff66;
+}
+.btn-danger:hover {
+    background-color: #023D54;
+    color: #ffff66;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .card {
+        flex-basis: 100% !important;
+        min-width: 0;
+    }
+    #market-data-card {
+        flex-basis: 100% !important;
+    }
+}
+@media (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+    .header h1 {
+        font-size: 1.2em;
+    }
+    .card {
+        padding: 10px;
+    }
+    table, th, td {
+        font-size: 0.85em;
+        padding: 6px;
+    }
+    .input-group input, .input-group select {
+        padding: 6px;
+    }
+    .btn {
+        min-width: 80px;
+        min-height: 30px;
+        font-size: 0.95em;
+    }
+}
+
+/* --- Table Responsiveness --- */
+.table-wrapper {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100%;
+}
+table {
+    min-width: 600px;
+}
+
+#clear-history {
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1.5px solid #023D54;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #023D54;
+    color: #ffff66;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #94DEA5;
+}
+
+#log {
+    background-color: #ffff66;
+    border: 1.5px solid #9A6735;
+    padding: 10px;
+    height: 200px; /* Fixed height for log window */
+    overflow-y: auto; /* Add scrollbar if content overflows */
+    border-radius: 4px;
+    color: #023D54;
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    word-wrap: break-word; /* Break long words */
+}
+
+#market-data-table th, #market-data-table td {
+    text-align: center; /* Center align market data table content */
+}
+
+.most-appearing {
+    background-color: #94DEA5 !important;
+    color: #023D54 !important;
+}
+
+.least-appearing {
+    background-color: #9A6735 !important;
+    color: #ffff66 !important;
+}
+
+#trade-history-card .table-wrapper {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.even-cell {
+    background-color: #94DEA5 !important; /* greenish, matches .most-appearing */
+    color: #023D54 !important;
+    font-weight: bold;
+}
+.odd-cell {
+    background-color: #ff5e62 !important; /* reddish, matches under7 button */
+    color: #fff700 !important;
+    font-weight: bold;
+}
+
+.barrier-cell {
+    background-color: #ff9800 !important;
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.trading-details-top, .trading-details-bottom {
+    margin-bottom: 10px;
+}
+.input-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+.tick-counts-grid {
+    display: grid;
+    grid-template-columns: auto 80px auto 80px auto 80px auto 80px;
+    gap: 8px 16px;
+    align-items: center;
+}
+.tick-label {
+    text-align: right;
+    font-weight: 500;
+}
+.tick-input {
+    width: 60px;
+    padding: 4px;
+    font-size: 1em;
+    border: 2px solid #222;
+    border-radius: 4px;
+    text-align: center;
+}
+@media (max-width: 700px) {
+    .tick-counts-grid {
+        grid-template-columns: auto 60px auto 60px;
+    }
+    .input-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+} 
