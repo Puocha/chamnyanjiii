@@ -93,6 +93,16 @@
 
         <div class="card" id="strategies-card">
             <h2>Strategies</h2>
+            <div class="tick-counts-grid">
+                <span class="tick-label">T0:</span>
+                <input type="number" id="t0" class="tick-input" value="0" min="0">
+                <span class="tick-label">T1:</span>
+                <input type="number" id="t1" class="tick-input" value="0" min="0">
+                <span class="tick-label">T2:</span>
+                <input type="number" id="t2" class="tick-input" value="0" min="0">
+                <span class="tick-label">T3:</span>
+                <input type="number" id="t3" class="tick-input" value="0" min="0">
+            </div>
             <div class="strategy-buttons">
                 <button class="strategy-button btn btn-primary over3-special" data-strategy="over3" aria-label="Start or stop Over 3 strategy">Over 3</button>
                 <button class="strategy-button btn btn-primary" data-strategy="even" aria-label="Start or stop Even strategy">Even</button>
@@ -163,4 +173,4 @@
     <script src="strategies.js" type="module"></script>
     <script src="ui.js" type="module"></script>
 </body>
-</html> 
+</html>
